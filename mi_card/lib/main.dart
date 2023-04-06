@@ -10,6 +10,7 @@ class  MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: SafeArea(
@@ -17,7 +18,7 @@ class  MyApp extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 50.0,
-                backgroundImage: AssetImage("/images/killo.jpg"),
+                backgroundImage: AssetImage("images/killo.jpg"),
               ),
               Text(
                 'Killo',
@@ -39,21 +40,50 @@ class  MyApp extends StatelessWidget {
                 ),
               ),
               Container(
+                color: Colors.white,
+                padding: EdgeInsets.all(10.0),
+                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
                 child: Row(
                   children: [
                     Icon(
                       Icons.phone,
-                      color: Colors.white,
+                      color: Colors.teal,
+                    ),
+                    SizedBox(
+                        width: 10.0
                     ),
                     Text(
                       '+132 345 6789',
                       style: TextStyle(
                         color: Colors.teal.shade900,
-                        fontFamily:
+                          fontFamily: 'Source Sans Pro'
                       ),
-                    )
+                    ),
                   ],
-                )
+                ),
+              ),
+              Container(
+                  color: Colors.white,
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.email,
+                        color: Colors.teal,
+                      ),
+                      SizedBox(
+                          width: 10.0
+                      ),
+                      Text(
+                        'killo@mail.com',
+                        style: TextStyle(
+                            color: Colors.teal.shade900,
+                            fontFamily: 'Source Sans Pro'
+                        ),
+                      )
+                    ],
+                  )
               )
             ],
           ),
