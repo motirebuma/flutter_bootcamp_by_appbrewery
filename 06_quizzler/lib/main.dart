@@ -28,13 +28,37 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scorekeeper = [];
+
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = quizBrain.getCorrectAnswer();
+
+    setState(() {
+      if (correctAnswer == userPickedAnswer) {
+        // print("correct");
+        scorekeeper.add(
+          Icon(
+            Icons.check,
+            color: Colors.teal,
+          ),
+        );
+      } else {
+        // print("wrong");
+        scorekeeper.add(
+          Icon(
+            Icons.close,
+            color: Colors.redAccent,
+          ),
+        );
+      }
+    });
+  }
   // List<String> questions = [
   //   'You can lead a cow down stairs but not up stairs.',
   //   'Approximately one quarter of human bones are in the feet.',
   //   'A slug\'s blood is green.'
   // ];
   // List<bool> answers = [false, true, true];
-  int questionNumber = 0;
+  // int questionNumber = 0;
 
   QuizBrain quizBrain = QuizBrain();
 
@@ -56,7 +80,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -82,15 +106,10 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onTap: () {
                 //The user picked true.
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
-                if (correctAnswer == true) {
-                  print("correct");
-                } else {
-                  print("wrong");
-                }
+                checkAnswer(true);
                 setState(() {
-                  questionNumber++;
+                  // questionNumber++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -112,15 +131,18 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onTap: () {
                 //The user picked false.
-                bool correctAnswer =
-                    quizBrain.questionBank[questionNumber].questionAnswer;
-                if (correctAnswer == false) {
-                  print("correct");
-                } else {
-                  print("wrong");
-                }
+                // bool correctAnswer = quizBrain.getCorrectAnswer();
+                // if (correctAnswer == false) {
+                //   print("correct");
+                // } else {
+                //   print("wrong");
+                // }
+
+                checkAnswer(false);
+
                 setState(() {
-                  questionNumber++;
+                  // questionNumber++;
+                  quizBrain.nextQuestion();
                 });
               },
             ),
