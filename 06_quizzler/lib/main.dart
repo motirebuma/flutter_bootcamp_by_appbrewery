@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
 
 void main() => runApp(Quizzler());
 
@@ -36,11 +36,13 @@ class _QuizPageState extends State<QuizPage> {
   // List<bool> answers = [false, true, true];
   int questionNumber = 0;
 
-  List<Question> questionBank = [
-    Question('You can lead a cow down stairs but not up stairs.', false),
-    Question('Approximately one quarter of human bones are in the feet.', true),
-    Question('A slug\'s blood is green.', true)
-  ];
+  QuizBrain quizBrain = QuizBrain();
+
+  // List<Question> questionBank = [
+  //   Question('You can lead a cow down stairs but not up stairs.', false),
+  //   Question('Approximately one quarter of human bones are in the feet.', true),
+  //   Question('A slug\'s blood is green.', true)
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNumber].questionText,
+                quizBrain.questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -81,7 +83,7 @@ class _QuizPageState extends State<QuizPage> {
               onTap: () {
                 //The user picked true.
                 bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   print("correct");
                 } else {
@@ -111,7 +113,7 @@ class _QuizPageState extends State<QuizPage> {
               onTap: () {
                 //The user picked false.
                 bool correctAnswer =
-                    questionBank[questionNumber].questionAnswer;
+                    quizBrain.questionBank[questionNumber].questionAnswer;
                 if (correctAnswer == false) {
                   print("correct");
                 } else {
